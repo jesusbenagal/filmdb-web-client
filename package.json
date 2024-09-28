@@ -1,0 +1,15 @@
+{
+  "name": "film-db-web-client",
+  "version": "1.0.0",
+  "description": "A Film Database Web, where you can search for your favorite movies.",
+  "scripts": {
+    "test": "pnpm run -r test",
+    "dev": "pnpm --filter website dev"
+  },
+  "keywords": [],
+  "author": "jesusbenagal",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
