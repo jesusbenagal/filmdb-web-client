@@ -1,7 +1,9 @@
+import { ThemeProvider } from '@filmdb/ui';
+
 interface IAppLayoutProps {
   children: React.ReactNode;
 }
 
 export default function AppLayout({ children }: IAppLayoutProps) {
-  return <div>{children}</div>;
+  return <ThemeProvider>{children}</ThemeProvider>;
 }
