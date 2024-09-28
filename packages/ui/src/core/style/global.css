@@ -1,0 +1,29 @@
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(1, 1, 1, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a4bab7;
+  border-radius: 1000rem;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.blue-hover:hover {
+  color: #a4bab7;
+  cursor: pointer;
+  transition: 200ms ease-in-out;
+}
+
+.hoverItem:hover {
+  transition: 200ms ease-in-out;
+  cursor: pointer;
+  opacity: 0.4 !important;
+}
