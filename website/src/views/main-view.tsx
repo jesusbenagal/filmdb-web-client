@@ -1,26 +1,32 @@
 import { useState } from 'react';
-import { FilmCard, TextField } from '@filmdb/ui';
+import { TextField, type IStyles } from '@filmdb/ui';
+
+import FilmsContainer from '@/components/films/films-container';
 
 import { useGetFilms } from '@/hooks/use-get-films';
 
+const getStyles = (): IStyles => ({
+  root: {
+    padding: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+  },
+});
+
 export default function MainView() {
+  const styles = getStyles();
+
   const [value, setValue] = useState<string>('');
   const [search, setSearch] = useState<string>('');
 
+  // TODO: Implement Error Handling
   const { data, isLoading } = useGetFilms(search);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '16px',
-        padding: '16px',
-      }}
-    >
+    <div style={styles.root}>
       <TextField
-        label="Search for a movie"
-        placeholder="Search for a movie..."
+        label="Film Title"
         value={value}
         onChange={(value) => setValue(value)}
         onKeyDown={(e) => {
@@ -29,23 +35,7 @@ export default function MainView() {
           }
         }}
       />
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-          gap: '16px',
-          padding: '16px',
-        }}
-      >
-        {isLoading && <p>Loading...</p>}
-        {data?.films.map((film) => (
-          <FilmCard
-            key={film.imdbID}
-            imgUrl={film.Poster}
-            onClick={() => console.log(film.Title)}
-          />
-        ))}
-      </div>
+      <FilmsContainer data={data} isLoading={isLoading} />
     </div>
   );
 }
