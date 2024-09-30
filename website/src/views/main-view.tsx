@@ -1,6 +1,14 @@
-import { TextField } from '@filmdb/ui';
+import { useState } from 'react';
+import { FilmCard, TextField } from '@filmdb/ui';
+
+import { useGetFilms } from '@/hooks/use-get-films';
 
 export default function MainView() {
+  const [value, setValue] = useState<string>('');
+  const [search, setSearch] = useState<string>('');
+
+  const { data, isLoading } = useGetFilms(search);
+
   return (
     <div
       style={{
@@ -13,8 +21,13 @@ export default function MainView() {
       <TextField
         label="Search for a movie"
         placeholder="Search for a movie..."
-        value=""
-        onChange={(value) => console.log(value)}
+        value={value}
+        onChange={(value) => setValue(value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            setSearch(value);
+          }
+        }}
       />
       <div
         style={{
@@ -23,7 +36,16 @@ export default function MainView() {
           gap: '16px',
           padding: '16px',
         }}
-      ></div>
+      >
+        {isLoading && <p>Loading...</p>}
+        {data?.films.map((film) => (
+          <FilmCard
+            key={film.imdbID}
+            imgUrl={film.Poster}
+            onClick={() => console.log(film.Title)}
+          />
+        ))}
+      </div>
     </div>
   );
 }
