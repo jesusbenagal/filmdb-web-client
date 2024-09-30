@@ -18,7 +18,13 @@ export default function AppLayout({ children }: IAppLayoutProps) {
         darkMode={darkMode}
         setDarkMode={() => dispatch(setDarkMode())}
       />
-      <main>{children}</main>
+      <main
+        style={{
+          padding: '1.5rem',
+        }}
+      >
+        {children}
+      </main>
     </ThemeProvider>
   );
 }
