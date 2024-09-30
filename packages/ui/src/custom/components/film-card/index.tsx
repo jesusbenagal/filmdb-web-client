@@ -12,7 +12,7 @@ const getStyles = (theme: Theme): IStyles => ({
   root: {
     borderRadius: '32px',
     width: '200px',
-    height: 200,
+    height: 270,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
