@@ -42,7 +42,7 @@ export default function FilmsContainer({
   if (isLoading) {
     return (
       <div style={styles.filmsContainer}>
-        {Array.from({ length: 10 }).map((_, index) => (
+        {Array.from({ length: 14 }).map((_, index) => (
           <FilmSkeleton
             key={index}
             animation="wave"
@@ -57,11 +57,7 @@ export default function FilmsContainer({
   }
 
   if (data && data.error) {
-    return (
-      <div style={styles.noFilms}>
-        An error occurred while fetching the films: {data.error}
-      </div>
-    );
+    return <div style={styles.noFilms}>{data.error}</div>;
   }
 
   if (data) {
