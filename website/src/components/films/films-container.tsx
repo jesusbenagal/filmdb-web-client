@@ -6,11 +6,11 @@ import {
   type Theme,
 } from '@filmdb/ui';
 
-import type { IFilm } from '@/interfaces/api';
+import type { IFilmsApiResponse } from '@/interfaces/api';
 
 interface IFilmsContainerProps {
   isLoading: boolean;
-  data?: { films: IFilm[]; totalResults: string; error?: string };
+  data?: IFilmsApiResponse;
 }
 
 const getStyles = (theme: Theme): IStyles => ({

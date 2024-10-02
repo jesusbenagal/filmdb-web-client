@@ -12,3 +12,9 @@ export interface IFilm {
   Type: string;
   Poster: string;
 }
+
+export interface IFilmsApiResponse {
+  films: IFilm[];
+  totalResults: string;
+  error?: string;
+}
