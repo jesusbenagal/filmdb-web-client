@@ -20,7 +20,6 @@ export default function MainView() {
   const [value, setValue] = useState<string>('');
   const [search, setSearch] = useState<string>('');
 
-  // TODO: Implement Error Handling
   const { data, isLoading } = useGetFilms(search);
 
   return (

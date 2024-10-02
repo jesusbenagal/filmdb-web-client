@@ -10,7 +10,6 @@ export const useGetFilms = (search: string) => {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
       revalidateIfStale: false,
-      onError: (error) => console.error(error),
     }
   );
 

@@ -10,7 +10,7 @@ import type { IFilm } from '@/interfaces/api';
 
 interface IFilmsContainerProps {
   isLoading: boolean;
-  data?: { films: IFilm[]; totalResults: string };
+  data?: { films: IFilm[]; totalResults: string; error?: string };
 }
 
 const getStyles = (theme: Theme): IStyles => ({
@@ -52,6 +52,14 @@ export default function FilmsContainer({
             style={styles.filmCardSkeleton}
           />
         ))}
+      </div>
+    );
+  }
+
+  if (data && data.error) {
+    return (
+      <div style={styles.noFilms}>
+        An error occurred while fetching the films: {data.error}
       </div>
     );
   }
