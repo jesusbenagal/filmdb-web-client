@@ -2,6 +2,7 @@ export interface IGetFilmsReponse {
   Response: string;
   Search: IFilm[];
   totalResults: string;
+  Error?: string;
 }
 
 export interface IFilm {
@@ -10,4 +11,10 @@ export interface IFilm {
   imdbID: string;
   Type: string;
   Poster: string;
+}
+
+export interface IFilmsApiResponse {
+  films: IFilm[];
+  totalResults: string;
+  error?: string;
 }

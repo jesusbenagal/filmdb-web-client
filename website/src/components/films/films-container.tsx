@@ -6,11 +6,11 @@ import {
   type Theme,
 } from '@filmdb/ui';
 
-import type { IFilm } from '@/interfaces/api';
+import type { IFilmsApiResponse } from '@/interfaces/api';
 
 interface IFilmsContainerProps {
   isLoading: boolean;
-  data?: { films: IFilm[]; totalResults: string };
+  data?: IFilmsApiResponse;
 }
 
 const getStyles = (theme: Theme): IStyles => ({
@@ -42,7 +42,7 @@ export default function FilmsContainer({
   if (isLoading) {
     return (
       <div style={styles.filmsContainer}>
-        {Array.from({ length: 10 }).map((_, index) => (
+        {Array.from({ length: 14 }).map((_, index) => (
           <FilmSkeleton
             key={index}
             animation="wave"
@@ -54,6 +54,10 @@ export default function FilmsContainer({
         ))}
       </div>
     );
+  }
+
+  if (data && data.error) {
+    return <div style={styles.noFilms}>{data.error}</div>;
   }
 
   if (data) {
