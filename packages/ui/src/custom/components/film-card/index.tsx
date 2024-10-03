@@ -18,6 +18,7 @@ const getStyles = (theme: Theme): IStyles => ({
     alignItems: 'center',
     background: theme.palette.background.paper,
     boxShadow: theme.shadows[1],
+    cursor: 'pointer',
   },
   img: {
     width: '100%',

@@ -3,17 +3,20 @@ import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import ThemeSwitch from '../theme-switch';
+import { Button } from '@mui/material';
 
 interface IHeaderProps {
   appName: string;
   darkMode: boolean;
   setDarkMode: (darkMode: boolean) => void;
+  onClickTitle: () => void;
 }
 
 export default function Header({
   appName,
   darkMode,
   setDarkMode,
+  onClickTitle,
 }: IHeaderProps) {
   return (
     <Grid2
@@ -27,7 +30,15 @@ export default function Header({
       borderRadius="0 0 10px 10px"
       boxShadow={3}
     >
-      <Typography variant="h6">{appName}</Typography>
+      <Button
+        variant="text"
+        onClick={onClickTitle}
+        disableTouchRipple
+        disableFocusRipple
+        disableRipple
+      >
+        <Typography variant="h6">{appName}</Typography>
+      </Button>
       <Grid2 display="flex" alignItems="center" gap={3}>
         <FavoriteIcon />
         <ThemeSwitch
