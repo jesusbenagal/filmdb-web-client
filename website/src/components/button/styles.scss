@@ -1,0 +1,66 @@
+// Colors
+$primary-color-light: #007bff;
+$primary-color-dark: #0056b3;
+$secondary-color-light: #6c757d;
+$secondary-color-dark: #545b62;
+$success-color-light: #28a745;
+$success-color-dark: #218838;
+$danger-color-light: #dc3545;
+$danger-color-dark: #c82333;
+
+.button {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button--primary--light {
+  background-color: $primary-color-light;
+  color: white;
+}
+
+.button--primary--dark {
+  background-color: $primary-color-dark;
+  color: white;
+}
+
+.button--secondary--light {
+  background-color: $secondary-color-light;
+  color: white;
+}
+
+.button--secondary--dark {
+  background-color: $secondary-color-dark;
+  color: white;
+}
+
+.button--success--light {
+  background-color: $success-color-light;
+  color: white;
+}
+
+.button--success--dark {
+  background-color: $success-color-dark;
+  color: white;
+}
+
+.button--danger--light {
+  background-color: $danger-color-light;
+  color: white;
+}
+
+.button--danger--dark {
+  background-color: $danger-color-dark;
+  color: white;
+}
+
+.button--disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+}
