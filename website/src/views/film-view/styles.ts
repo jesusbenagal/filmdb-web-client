@@ -43,6 +43,7 @@ export const getStyles = (theme: Theme): IStyles => ({
   },
   infoRow: {
     display: 'flex',
+    flexDirection: 'column',
   },
   infoLabel: {
     fontWeight: 'bold',
