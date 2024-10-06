@@ -4,7 +4,8 @@
   "description": "A Film Database Web, where you can search for your favorite movies.",
   "scripts": {
     "test": "pnpm run -r test",
-    "dev": "pnpm --filter website dev"
+    "dev": "pnpm --filter website dev",
+    "build": "pnpm --filter website build"
   },
   "keywords": [],
   "author": "jesusbenagal",
