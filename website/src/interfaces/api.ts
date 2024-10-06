@@ -11,6 +11,8 @@ export interface IFilm {
   imdbID: string;
   Type: string;
   Poster: string;
+  imdbRating?: string;
+  imdbVotes?: string;
 }
 
 export interface IFilmsApiResponse {
