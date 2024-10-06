@@ -24,13 +24,7 @@ export default function AppLayout({ children }: IAppLayoutProps) {
         onClickTitle={() => navigate('/')}
         totalFavourites={favourites.length}
       />
-      <main
-        style={{
-          padding: '.5rem',
-        }}
-      >
-        {children}
-      </main>
+      <main>{children}</main>
     </ThemeProvider>
   );
 }

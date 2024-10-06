@@ -17,6 +17,7 @@ export interface IFilmsApiResponse {
   films: IFilm[];
   totalResults: string;
   error?: string;
+  totalPages: number;
 }
 export interface IFilmDetail {
   Title: string;

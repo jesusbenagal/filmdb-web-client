@@ -15,8 +15,9 @@ export default function MainView() {
   const [value, setValue] = useState<string>('');
   const [category, setCategory] = useState<IOption | null>(null);
   const [search, setSearch] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
 
-  const { data, isLoading } = useGetFilms(search, category);
+  const { data, isLoading } = useGetFilms(search, category, page);
 
   const handleKeyDown = (e: React.KeyboardEvent<Element>) => {
     if (e.key === 'Enter') {
@@ -56,7 +57,12 @@ export default function MainView() {
           }}
         />
       </div>
-      <FilmsContainer data={data} isLoading={isLoading} />
+      <FilmsContainer
+        data={data}
+        page={page}
+        setPage={setPage}
+        isLoading={isLoading}
+      />
     </div>
   );
 }

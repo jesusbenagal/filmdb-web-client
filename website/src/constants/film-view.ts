@@ -11,6 +11,7 @@ export const getFilmInfo = (data: IFilmDetail) => {
       { label: 'Writer', value: data.Writer },
       { label: 'Actors', value: data.Actors },
       { label: 'Awards', value: data.Awards },
+      { label: 'Production', value: data.Production },
     ],
     [
       { label: 'Plot', value: data.Plot },
@@ -19,7 +20,6 @@ export const getFilmInfo = (data: IFilmDetail) => {
       { label: 'Ratings', value: data.imdbRating },
       { label: 'Metascore', value: data.Metascore },
       { label: 'Box Office', value: data.BoxOffice },
-      { label: 'Production', value: data.Production },
     ],
   ];
 };
