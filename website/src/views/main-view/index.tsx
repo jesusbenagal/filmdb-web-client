@@ -1,27 +1,27 @@
-import { useState } from 'react';
 import { AutoComplete, TextField } from '@filmdb/ui';
 
 import FilmsContainer from '@/components/films/films-container';
+
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { setSearch, setCategory, setValue } from '@/store/slices/filtersSlice';
 
 import { useGetFilms } from '@/hooks/use-get-films';
 
 import { getStyles } from './styles';
 
-import type { IOption } from '@/interfaces/api';
-
 export default function MainView() {
   const styles = getStyles();
 
-  const [value, setValue] = useState<string>('');
-  const [category, setCategory] = useState<IOption | null>(null);
-  const [search, setSearch] = useState<string>('');
-  const [page, setPage] = useState<number>(1);
+  const { category, page, search, value } = useAppSelector(
+    (state) => state.filters
+  );
+  const dispatch = useAppDispatch();
 
   const { data, isLoading } = useGetFilms(search, category, page);
 
   const handleKeyDown = (e: React.KeyboardEvent<Element>) => {
     if (e.key === 'Enter') {
-      setSearch(value);
+      dispatch(setSearch(value));
     }
   };
 
@@ -37,7 +37,7 @@ export default function MainView() {
         <TextField
           label="Film Title"
           value={value}
-          onChange={(value) => setValue(value)}
+          onChange={(value) => dispatch(setValue(value))}
           onKeyDown={handleKeyDown}
           style={{
             width: '60%',
@@ -46,7 +46,7 @@ export default function MainView() {
         <AutoComplete
           label="Category"
           value={category}
-          onChange={(value) => setCategory(value)}
+          onChange={(value) => dispatch(setCategory(value))}
           options={[
             { label: 'Movie', value: 'movie' },
             { label: 'Series', value: 'series' },
@@ -57,12 +57,7 @@ export default function MainView() {
           }}
         />
       </div>
-      <FilmsContainer
-        data={data}
-        page={page}
-        setPage={setPage}
-        isLoading={isLoading}
-      />
+      <FilmsContainer data={data} isLoading={isLoading} />
     </div>
   );
 }

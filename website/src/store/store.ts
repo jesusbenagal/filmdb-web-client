@@ -7,11 +7,13 @@ import {
 
 import themeReducer from './slices/themeSlice';
 import favouritesReducer from './slices/favouritesSlice';
+import filtersReducer from './slices/filtersSlice';
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
     favourites: favouritesReducer,
+    filters: filtersReducer,
   },
 });
 

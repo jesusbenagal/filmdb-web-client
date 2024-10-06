@@ -11,14 +11,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { addFavourite, removeFavourite } from '@/store/slices/favouritesSlice';
+import { setPage } from '@/store/slices/filtersSlice';
 
 import type { IFilmsApiResponse } from '@/interfaces/api';
 
 interface IFilmsContainerProps {
   isLoading: boolean;
   data?: IFilmsApiResponse;
-  page: number;
-  setPage: (page: number) => void;
 }
 
 const getStyles = (theme: Theme): IStyles => ({
@@ -53,14 +52,13 @@ const getStyles = (theme: Theme): IStyles => ({
 export default function FilmsContainer({
   data,
   isLoading,
-  page,
-  setPage,
 }: IFilmsContainerProps) {
   const theme = useTheme();
   const styles = getStyles(theme);
   const navigate = useNavigate();
 
   const { favourites } = useAppSelector((state) => state.favourites);
+  const { page } = useAppSelector((state) => state.filters);
   const dispatch = useAppDispatch();
 
   if (isLoading) {
@@ -95,7 +93,7 @@ export default function FilmsContainer({
           <Pagination
             page={page}
             count={data.totalPages}
-            onChange={(_, page) => setPage(page)}
+            onChange={(_, page) => dispatch(setPage(page))}
           />
         </div>
         <div style={styles.filmsContainer}>
