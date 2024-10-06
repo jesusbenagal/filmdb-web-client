@@ -1,18 +1,11 @@
 import { useState } from 'react';
-import { TextField, type IStyles } from '@filmdb/ui';
+import { TextField } from '@filmdb/ui';
 
 import FilmsContainer from '@/components/films/films-container';
 
 import { useGetFilms } from '@/hooks/use-get-films';
 
-const getStyles = (): IStyles => ({
-  root: {
-    padding: '16px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '16px',
-  },
-});
+import { getStyles } from './styles';
 
 export default function MainView() {
   const styles = getStyles();

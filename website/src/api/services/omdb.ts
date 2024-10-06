@@ -1,8 +1,12 @@
 import { createAxios } from '@filmdb/utils';
 
-import type { IGetFilmsReponse, IFilmsApiResponse } from '@/interfaces/api';
+import type {
+  IGetFilmsReponse,
+  IFilmsApiResponse,
+  IFilmDetail,
+} from '@/interfaces/api';
 
-const omdbInstance = createAxios('http://www.omdbapi.com/');
+const omdbInstance = createAxios('https://www.omdbapi.com/');
 
 const apiKey: string = import.meta.env.VITE_OMDB_API_KEY;
 
@@ -23,4 +27,12 @@ export const getFilms = async (search: string): Promise<IFilmsApiResponse> => {
     totalResults: data.totalResults,
     films: data.Search,
   };
+};
+
+export const getFilmById = async (id: string): Promise<IFilmDetail> => {
+  const { data } = await omdbInstance.get<IFilmDetail>(
+    `?apikey=${apiKey}&i=${id}`
+  );
+
+  return data;
 };

@@ -5,6 +5,7 @@ import {
   type IStyles,
   type Theme,
 } from '@filmdb/ui';
+import { useNavigate } from 'react-router-dom';
 
 import type { IFilmsApiResponse } from '@/interfaces/api';
 
@@ -38,6 +39,7 @@ export default function FilmsContainer({
 }: IFilmsContainerProps) {
   const theme = useTheme();
   const styles = getStyles(theme);
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -67,7 +69,7 @@ export default function FilmsContainer({
           <FilmCard
             key={film.imdbID}
             imgUrl={film.Poster}
-            onClick={() => console.log(film.Title)}
+            onClick={() => navigate(`/film/${film.imdbID}`)}
           />
         ))}
       </div>
