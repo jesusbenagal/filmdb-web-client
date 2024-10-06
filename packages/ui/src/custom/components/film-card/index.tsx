@@ -1,6 +1,6 @@
 import type { Theme } from '@mui/material';
-import Favorite from '@mui/icons-material/Favorite';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
 import { Text, useTheme } from '../../../core';
 
@@ -10,8 +10,8 @@ interface IFilmCardProps {
   imgUrl: string;
   onClick: () => void;
   filmName: string;
-  onClickFavorite?: () => void;
-  isFavorite?: boolean;
+  onClickFavourite?: () => void;
+  isFavourite?: boolean;
 }
 
 const getStyles = (theme: Theme): IStyles => ({
@@ -53,8 +53,8 @@ export default function FilmCard({
   imgUrl,
   onClick,
   filmName,
-  onClickFavorite,
-  isFavorite,
+  onClickFavourite,
+  isFavourite,
 }: IFilmCardProps) {
   const theme = useTheme();
   const styles = getStyles(theme);
@@ -76,10 +76,13 @@ export default function FilmCard({
       </div>
       <div style={styles.textContainer}>
         <Text text={filmName} variant="caption" />
-        {isFavorite ? (
-          <Favorite onClick={onClickFavorite} style={styles.heartIcon} />
+        {isFavourite ? (
+          <FavoriteIcon onClick={onClickFavourite} style={styles.heartIcon} />
         ) : (
-          <FavoriteBorder onClick={onClickFavorite} style={styles.heartIcon} />
+          <FavoriteBorderIcon
+            onClick={onClickFavourite}
+            style={styles.heartIcon}
+          />
         )}
       </div>
     </div>
