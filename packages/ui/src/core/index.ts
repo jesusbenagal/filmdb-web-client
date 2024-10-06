@@ -14,3 +14,6 @@ export { default as Text } from './components/text';
 
 // Spinner
 export { default as Spinner } from './components/spinner';
+
+// Pagination
+export { default as Pagination } from './components/pagination';

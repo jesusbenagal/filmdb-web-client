@@ -4,10 +4,14 @@ import { getFilms } from '@/api/services/omdb';
 
 import type { IOption } from '@/interfaces/api';
 
-export const useGetFilms = (search: string, category: IOption | null) => {
+export const useGetFilms = (
+  search: string,
+  category: IOption | null,
+  page: number
+) => {
   const { data, isLoading, error } = useSWR(
-    search === '' ? null : ['films', search, category],
-    () => getFilms(search, category),
+    search === '' ? null : ['films', search, category, page],
+    () => getFilms(search, category, page),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: false,
