@@ -10,8 +10,14 @@ export const getStyles = (theme: Theme): IStyles => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '3rem',
+    gap: '2rem',
     marginTop: '1rem',
+    padding: '1rem',
+  },
+  headerContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   grid: {
     display: 'grid',
@@ -43,6 +49,7 @@ export const getStyles = (theme: Theme): IStyles => ({
   },
   infoRow: {
     display: 'flex',
+    flexDirection: 'column',
   },
   infoLabel: {
     fontWeight: 'bold',

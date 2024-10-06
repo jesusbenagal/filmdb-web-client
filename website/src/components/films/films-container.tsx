@@ -1,11 +1,15 @@
 import {
   FilmCard,
   FilmSkeleton,
+  Text,
   useTheme,
   type IStyles,
   type Theme,
 } from '@filmdb/ui';
 import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { addFavourite, removeFavourite } from '@/store/slices/favouritesSlice';
 
 import type { IFilmsApiResponse } from '@/interfaces/api';
 
@@ -18,8 +22,8 @@ const getStyles = (theme: Theme): IStyles => ({
   filmsContainer: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-    gap: '16px',
-    padding: '16px',
+    gap: '15px',
+    padding: '5px',
   },
   filmCardSkeleton: {
     borderRadius: '32px',
@@ -27,7 +31,6 @@ const getStyles = (theme: Theme): IStyles => ({
   noFilms: {
     display: 'flex',
     justifyContent: 'center',
-    fontSize: '18px',
     color: theme.palette.text.secondary,
     padding: '16px',
   },
@@ -40,6 +43,9 @@ export default function FilmsContainer({
   const theme = useTheme();
   const styles = getStyles(theme);
   const navigate = useNavigate();
+
+  const { favourites } = useAppSelector((state) => state.favourites);
+  const dispatch = useAppDispatch();
 
   if (isLoading) {
     return (
@@ -65,20 +71,38 @@ export default function FilmsContainer({
   if (data) {
     return (
       <div style={styles.filmsContainer}>
-        {data.films.map((film) => (
-          <FilmCard
-            key={film.imdbID}
-            imgUrl={film.Poster}
-            onClick={() => navigate(`/film/${film.imdbID}`)}
-          />
-        ))}
+        {data.films.map((film) => {
+          const isFavourite = favourites.includes(film.imdbID);
+
+          const handleFavourite = () => {
+            if (isFavourite) {
+              dispatch(removeFavourite(film.imdbID));
+            } else {
+              dispatch(addFavourite(film.imdbID));
+            }
+          };
+
+          return (
+            <FilmCard
+              key={film.imdbID}
+              imgUrl={film.Poster}
+              onClick={() => navigate(`/film/${film.imdbID}`)}
+              filmName={film.Title}
+              isFavourite={isFavourite}
+              onClickFavourite={handleFavourite}
+            />
+          );
+        })}
       </div>
     );
   }
 
   return (
     <div style={styles.noFilms}>
-      Please, search for a film by typing the title above
+      <Text
+        text="Please, search for a film by typing the title above"
+        variant="body1"
+      />
     </div>
   );
 }

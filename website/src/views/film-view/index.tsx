@@ -1,17 +1,32 @@
 import { Fragment } from 'react';
-import { useTheme, Text, Spinner } from '@filmdb/ui';
+import {
+  useTheme,
+  Text,
+  Spinner,
+  FavouriteIcon,
+  FavouriteBorderIcon,
+} from '@filmdb/ui';
 import { useParams } from 'react-router-dom';
 
 import { useGetFilmById } from '@/hooks/use-get-film-by-id';
 
-import { getStyles } from './styles';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { removeFavourite, addFavourite } from '@/store/slices/favouritesSlice';
+
 import { getFilmInfo } from '@/constants';
+
+import { getStyles } from './styles';
 
 export default function FilmView() {
   const { id } = useParams();
 
   const theme = useTheme();
   const styles = getStyles(theme);
+
+  const { favourites } = useAppSelector((state) => state.favourites);
+  const dispatch = useAppDispatch();
+
+  const isFavourite = favourites.some((film) => film === id);
 
   const { data, isLoading } = useGetFilmById(id!);
 
@@ -29,7 +44,14 @@ export default function FilmView() {
 
   return (
     <div style={styles.container}>
-      <Text text={data.Title} variant="h5" />
+      <div style={styles.headerContainer}>
+        <Text text={data.Title} variant="h5" />
+        {isFavourite ? (
+          <FavouriteIcon onClick={() => dispatch(removeFavourite(id!))} />
+        ) : (
+          <FavouriteBorderIcon onClick={() => dispatch(addFavourite(id!))} />
+        )}
+      </div>
       <div style={styles.grid}>
         <div style={styles.imageContainer}>
           <img src={data.Poster} alt={data.Title} style={styles.image} />

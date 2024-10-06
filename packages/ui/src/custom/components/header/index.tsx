@@ -10,6 +10,7 @@ interface IHeaderProps {
   darkMode: boolean;
   setDarkMode: (darkMode: boolean) => void;
   onClickTitle: () => void;
+  totalFavourites: number;
 }
 
 export default function Header({
@@ -17,6 +18,7 @@ export default function Header({
   darkMode,
   setDarkMode,
   onClickTitle,
+  totalFavourites,
 }: IHeaderProps) {
   return (
     <Grid2
@@ -40,7 +42,10 @@ export default function Header({
         <Typography variant="h6">{appName}</Typography>
       </Button>
       <Grid2 display="flex" alignItems="center" gap={3}>
-        <FavoriteIcon />
+        <Grid2 display="flex" alignItems="center" gap={0.5}>
+          <FavoriteIcon />
+          <Typography variant="caption">{totalFavourites}</Typography>
+        </Grid2>
         <ThemeSwitch
           value={darkMode}
           onChange={(_, value) => setDarkMode(value)}

@@ -12,6 +12,7 @@ export default function AppLayout({ children }: IAppLayoutProps) {
   const navigate = useNavigate();
 
   const { darkMode } = useAppSelector((state) => state.theme);
+  const { favourites } = useAppSelector((state) => state.favourites);
   const dispatch = useAppDispatch();
 
   return (
@@ -21,10 +22,11 @@ export default function AppLayout({ children }: IAppLayoutProps) {
         darkMode={darkMode}
         setDarkMode={() => dispatch(setDarkMode())}
         onClickTitle={() => navigate('/')}
+        totalFavourites={favourites.length}
       />
       <main
         style={{
-          padding: '1.5rem',
+          padding: '.5rem',
         }}
       >
         {children}

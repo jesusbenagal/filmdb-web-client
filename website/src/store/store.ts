@@ -6,10 +6,12 @@ import {
 } from 'react-redux';
 
 import themeReducer from './slices/themeSlice';
+import favouritesReducer from './slices/favouritesSlice';
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
+    favourites: favouritesReducer,
   },
 });
 
