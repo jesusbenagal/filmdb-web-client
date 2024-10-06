@@ -5,6 +5,7 @@ interface ITextFieldProps {
   value: string;
   onChange: (value: string) => void;
   onKeyDown?: (event: React.KeyboardEvent) => void;
+  style: React.CSSProperties;
 }
 
 export default function TextField({
@@ -12,6 +13,7 @@ export default function TextField({
   value,
   onChange,
   onKeyDown,
+  style,
 }: ITextFieldProps & Omit<TextFieldProps, 'onChange'>) {
   return (
     <MuiTextField
@@ -19,7 +21,7 @@ export default function TextField({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       onKeyDown={(e) => onKeyDown && onKeyDown(e)}
-      sx={{ width: '100%' }}
+      style={style}
     />
   );
 }
