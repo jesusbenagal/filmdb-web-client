@@ -6,6 +6,9 @@ export type { Theme } from '@mui/material/styles';
 // TextField
 export { default as TextField } from './components/inputs/textfield';
 
+// AutoComplete
+export { default as AutoComplete } from './components/inputs/autocomplete';
+
 // Text
 export { default as Text } from './components/text';
 
